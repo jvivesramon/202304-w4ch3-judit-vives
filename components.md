@@ -1,32 +1,77 @@
-# Data layer
+# DATA LAYER
 
 ## Data
 
-- A collection of numbers from content provider
+- phoneNumber: string[] -> initial value []
+- isCalling: boolean -> initial value false
 
-# Components
+## Modifications
+
+- phoneNumber:
+  - addDigit(): Add digit to end
+  - emptyPhoneNumber(): Empty
+- isCalling:
+  - call(): set to true
+  - hangUp(): set to false
+
+# COMPONENTS
+
+## PhoneContext
+
+- Stores:
+  - phoneNumber
+  - isCalling
+  - emptyPhoneNumber
+  - addDigit
+  - call
+  - hangUp
 
 ## App
 
-- Load list of telephone numbers
-- Set selected telephone number buttons
-- Get displayed telephone numbers
+- Renders an Info component
+- Renders a Display component
+- Renders a Keyboard component
+- Renders an Actions component
 
 ## Info
 
-- Receives a prop from content provider when it's calling
+- Receives isCalling from the PhoneContext
+- Shows "Calling..." when isCalling is true
+- Hides "Calling..." when isCalling is false
 
 ## Display
 
-- Receives a prop from content provider when button numbers are selected
+- Receives phoneNumber from the PhoneContext
+- Shows the phoneNumber
 
 ## Actions
 
-- Select telephone number buttons
-- Get current selected display numbers
-- Call action from call button
-- Hang up action from hang up button
+- Receives isCalling from the PhoneContext
+- Receives phoneNumber from the PhoneContext
+- Receives call from the PhoneContext
+- Receives hangUp from the PhoneContext
+- Renders a call button (Action component) when isCalling is false
+- Renders a hang up button (Action component) when isCalling is true
+
+## Action
+
+- Receives isActive from props
+- Receives an actionOnClick from props
+- Calls the actionOnClick function when the user clicks on it
+- Adds the class "active" when isActive is true
+- Removes the class "active" when isActive is false
 
 ## Keyboard
 
-- receives a prop from content provider
+- Receives isCalling from PhoneContext
+- Receives addDigit from PhoneContext
+- Receives emptyPhoneNumber from PhoneContext
+- Renders 10 numeric keys (Key component)
+- Renders 1 delete key (Key component)
+
+## Key
+
+- Receives an actionOnClick from props
+- Receives a text from props
+- Receives an isBig boolean from props
+- Receives an isDisabled boolean from props
